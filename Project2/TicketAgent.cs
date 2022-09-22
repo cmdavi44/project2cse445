@@ -20,9 +20,6 @@ namespace Project2
             }
         }
 
-        public void ticketOnSale(Int32 p)
-        {
-            Console.WriteLine("Thread {0}: tickets are on sale for: {1} each", Thread.CurrentThread.Name, p);
-        }
+ 
     }
 }

@@ -1,0 +1,28 @@
+HOTEL BOOKING MULTICELLBUFFER: https://github.com/crsiebler/HotelBookingSystem/blob/master/HotelBookingSystem/MultiCellBuffer.cs
+
+- have to create 2 cruises (consumers)
+- each cruise must have its own pricing model
+- 40 >= ticket price <= 200
+
+ticket agent needs to determine which price offered by a cruise is lowest, 
+then create an orderclass and put it into the multibuffer.  The number of tickets to buy
+is calculated by determining how many tickets a ticketagent has already purchased and the difference between the last price and the current.
+
+orderobject will be sent to orderprocessing, this will ensure credit card info and total price based
+on ticket price, number of tickets, tax, and location charge.  Once the credit card is deemed valid, 
+the order object will be sent to the buffer.
+
+- Cruise
+    - Creates price, notifies event handlers in tickeagents when a price is lower than the previous
+    - consumes order objects from the multicellbuffer
+
+- ticketagent
+    - Reads new lowest price, then determines whether or not to make a order for it and how many tickets,
+    then sends the order object to the buffer
+
+- orderobject
+    - senderId: thread number
+    - cardNo: integer of credit card
+    - receiverID: cruise thread name or unique cruise name
+    - quantity: number of tickets to order
+    - unit price: double representation of unit price

@@ -10,6 +10,7 @@ namespace Project2
     public delegate void priceCutEvent(Int32 pr);
     internal class Cruise
     {
+        private Int32 counter = 0;
         static Random rng = new Random();
         public static event priceCutEvent priceCut;
         private static Int32 cruisePrice = 100;
@@ -18,6 +19,7 @@ namespace Project2
             return cruisePrice;
         }
 
+        // Pricut cut 
         public static void changePrice(Int32 price)
         {
             if (price < cruisePrice)
@@ -39,7 +41,8 @@ namespace Project2
             {
                 Thread.Sleep(500);
                 Int32 p = rng.Next(40, 200);
-                Console.WriteLine("New price is: {0}", p);
+                counter++;
+                Console.WriteLine("New price is: {0} for price cut {1}", p, counter);
 
                 Cruise.changePrice(p);
             }
