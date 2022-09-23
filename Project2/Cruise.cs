@@ -7,26 +7,26 @@ using System.Threading;
 
 namespace Project2
 {
-    public delegate void priceCutEvent(Int32 pr);
+    public delegate void priceCutEvent(double price, double oldPrice);
     internal class Cruise
     {
         private Int32 counter = 0;
         static Random rng = new Random();
         public static event priceCutEvent priceCut;
-        private static Int32 cruisePrice = 100;
-        public Int32 getPrice()
+        private static double cruisePrice = 100;
+        public double getPrice()
         {
             return cruisePrice;
         }
 
         // Pricut cut 
-        public static void changePrice(Int32 price)
+        public static void changePrice(double price)
         {
             if (price < cruisePrice)
             {
                 if(priceCut != null)
                 {
-                    priceCut(price); 
+                    priceCut(price, cruisePrice); 
                 }
             }
             cruisePrice = price;
